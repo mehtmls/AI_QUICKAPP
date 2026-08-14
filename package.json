@@ -1,0 +1,30 @@
+{
+  "name": "AI_QUICKAPP",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": ">=8.10"
+  },
+  "scripts": {
+    "start": "node -r ./monkey-patch.js node_modules/aiot-toolkit/lib/bin.js start --watch",
+    "build": "node -r ./monkey-patch.js node_modules/aiot-toolkit/lib/bin.js build",
+    "release": "node -r ./monkey-patch.js node_modules/aiot-toolkit/lib/bin.js release",
+    "lint": "eslint --format codeframe --fix --ext .ux,.js src/"
+  },
+  "lint-staged": {
+    "*.{ux,js}": [
+      "prettier --write",
+      "eslint --format codeframe --fix",
+      "git add"
+    ],
+    "*.{less,css}": [
+      "prettier --write",
+      "stylelint --fix --custom-syntax postcss-less",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@aiot-toolkit/jsc": "^1.0.3",
+    "aiot-toolkit": "^2.0.5"
+  }
+}
